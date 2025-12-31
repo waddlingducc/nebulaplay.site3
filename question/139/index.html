@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SYG9HZ54L2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SYG9HZ54L2');
+</script>
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Home - Google Drive</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
+<style>
+  img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    pointer-events: auto;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: black url(/images/colour-dark-grey-mz-vf.jpg) center center / cover no-repeat fixed;
+    overflow-x: hidden; /* no horizontal scrollbar */
+    overflow-y: auto; /* allow vertical scrolling */
+    min-height: 110vh; /* ensure there's scrollable content */
+  }
+
+  /* Top bar (locked at top) */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7vw;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(10px) saturate(200%) brightness(70%);
+    padding: 0 1%;
+    z-index: 10000;                /* fixed navbar always on top */
+  }
+  nav img {
+    width: 95px;
+    height: auto;
+    margin-right: 1%;
+    border-radius: 1vw;
+  }
+  nav h3 {
+    font-size: 4vw;
+    font-weight: 800;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Game section */
+  .content {
+    margin-top: 0;
+    padding: 2vh 16px 16px 16px;
+    box-sizing: border-box;
+  }
+  .game-wrap {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 82vh;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .game-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url(/images/ubackground.png) center center / cover no-repeat;
+    z-index: 0;
+  }
+  .game-wrap iframe {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    z-index: 1;
+  }
+
+
+  .vibrant-text {
+    font-weight: 800;
+    font-size: 120px;
+    background: linear-gradient(
+      270deg,
+      rgba(0, 242, 255, 0.8),   /* cyan */
+      rgba(95, 13, 237, 0.8),   /* purple */
+      rgba(0, 242, 255, 0.8)    /* cyan again for loop */
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 
+      0 0 4px rgba(0, 242, 255, 0.8),
+      0 0 20px rgba(95, 13, 237, 0.8);
+    animation: waveGradient 5s ease infinite;
+    margin: 0;
+  }
+
+  .vibrant-text.small {
+    font-size: 60px;
+    font-weight: 700;
+    margin-top: 30px;     
+    letter-spacing: 2px;  
+  }
+
+  @keyframes waveGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .neon-rule {
+    position: relative;
+    width: 60%;
+    height: 3px;
+    margin: 30px auto 0;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 242, 255, 0) 0%,         /* transparent edges */
+      rgba(0, 242, 255, 0.35) 15%,     /* cyan start */
+      rgba(0, 242, 255, 0.85) 30%,     /* bright cyan */
+      rgba(95, 13, 237, 0.7) 50%,      /* purple accent in the center */
+      rgba(0, 242, 255, 0.85) 70%,     /* bright cyan again */
+      rgba(0, 242, 255, 0.35) 85%,     /* fade cyan */
+      rgba(0, 242, 255, 0) 100%        /* fade out */
+    );
+    transform: translateZ(0);
+  }
+
+  .neon-rule::before {
+    content: "";
+    position: absolute;
+    inset: -4px 0;
+    background: inherit;
+    filter: blur(5px);          /* softer glow */
+    opacity: 0.55;              /* reduced glow intensity */
+    pointer-events: none;
+  }
+
+
+        /* Rails */
+  .ad-rail-left {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 160px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+  }
+  .ad-rail-left .ad-container {
+    position: sticky;
+    top: 0;
+    width: 160px;
+    height: 600px;
+  }
+  .ad-rail-left iframe,
+  .ad-container iframe,
+  .top-right-banner iframe {
+    border-radius: 0 !important;
+  }
+  .space-rail-right {
+    position: fixed;
+    right: 0;
+    top: 95px !important;
+    top: max(7vw, 95px) !important;
+    width: 160px;
+    height: calc(100vh - 95px);
+    height: calc(100vh - max(7vw, 95px));
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 9998;
+  }
+  body {
+    margin-left: 160px;
+    margin-right: 160px;
+  }
+  nav {
+    left: 160px !important;
+    right: 0 !important;
+    width: auto !important;
+  }
+
+/* Top right banner ad */
+
+      /* Force no rounded corners on ad iframes */
+      .ad-rail-left iframe,
+      .ad-container iframe,
+      .top-right-banner iframe {
+        border-radius: 0 !important;
+      }
+
+      .top-right-banner {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 728px;
+        height: 90px;
+        z-index: 10001;
+        background-color: rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0;
+      }
+
+  /* Random Games Section */
+  .section-title {
+    font-size: 40px;
+    font-weight: 700;
+    background: linear-gradient(
+      270deg,
+      rgba(0, 242, 255, 0.8),
+      rgba(95, 13, 237, 0.8),
+      rgba(0, 242, 255, 0.8)
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: waveGradient 5s ease infinite;
+    margin-bottom: 20px;
+  }
+
+  .game-section {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 20px;
+  }
+
+  .game-section img {
+    height: 12vw;
+    width: 12vw;
+    border-radius: 1vw;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    object-fit: cover;
+  }
+
+  .game-section img:hover {
+    transform: scale(1.05);
+    box-shadow: 
+      0 0 4px rgba(0, 242, 255, 0.8),
+      0 0 20px rgba(95, 13, 237, 0.8);
+  }
+
+  .game-section a {
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  #random-games img {
+    width: 13vw;
+    height: 13vw;
+    object-fit: fill;
+  }
+
+  .vibrant-text.section-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+  }
+
+
+  /* Responsive navbar clearance */
+  .navbar-spacer {
+    height: 7vw;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-spacer {
+      height: calc(10vw + 20px);
+    }
+    .game-wrap {
+      margin-top: 2vw;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .navbar-spacer {
+      height: calc(14vw + 25px);
+    }
+    .game-wrap {
+      margin-top: 3vw;
+    }
+  }
+
+
+  
+
+
+  /* Ensure game frame never overlaps with navbar */
+  .game-wrap {
+    max-height: calc(100vh - 7vw - 10px);
+  }
+  
+  @media (max-width: 768px) {
+    .game-wrap {
+      height: 75vh;
+      max-height: calc(100vh - 10vw - 30px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .game-wrap {
+      height: 70vh;
+      max-height: calc(100vh - 14vw - 35px);
+    }
+  }
+
+
+  /* Final override for right rail positioning - high specificity */
+  html body .space-rail-right {
+    top: 95px !important;
+    top: max(7vw, 95px) !important;
+    height: calc(100vh - 95px) !important;
+    height: calc(100vh - max(7vw, 95px)) !important;
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- Left Ad Rail -->
+<div class="ad-rail-left">
+  <div class="ad-container">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '60d8f46060c0b8cc1916b42e58bbaa32',
+        'format' : 'iframe',
+        'height' : 600,
+        'width' : 160,
+        'params' : {}
+      };
+    </script>
+    <script
+      type="text/javascript"
+      src="//creaturefeaturesmouse.com/60d8f46060c0b8cc1916b42e58bbaa32/invoke.js"
+    ></script>
+  </div>
+</div>
+
+
+
+<!-- Left Ad Rail -->
+
+<!-- Right Space Rail (no ads) -->
+<div class="space-rail-right" style="position: fixed; right: 0; top: 95px; bottom: 0; width: 160px; background-color: rgba(0,0,0,0.1); z-index: 9998; display: flex; align-items: center; justify-content: center;">
+    <div>
+      <script>
+        atOptions = {
+          'key' : '0fe6cef4d73cb471e17a38514a5d3f75',
+          'format' : 'iframe',
+          'height' : 300,
+          'width' : 160,
+          'params' : {}
+        };
+      </script>
+      <script src="https://creaturefeaturesmouse.com/0fe6cef4d73cb471e17a38514a5d3f75/invoke.js"></script>
+    </div>
+  </div>
+
+
+<!-- Top Right Banner Ad -->
+<div class="top-right-banner">
+  <script type="text/javascript">
+    atOptions = {
+      'key' : 'aeb0dc35e1a9a93d2ad33966d116c87a',
+      'format' : 'iframe',
+      'height' : 90,
+      'width' : 728,
+      'params' : {}
+    };
+  </script>
+  <script
+    type="text/javascript"
+    src="//creaturefeaturesmouse.com/aeb0dc35e1a9a93d2ad33966d116c87a/invoke.js"
+  ></script>
+</div>
+
+    <nav>
+    <a class="logo-link" data-href="/" style="cursor:pointer;">
+      <img alt="logo" src="/images/logo.png"/>
+    </a>
+    
+      </nav>
+
+  <div class="content">
+      <div style="text-align:center; padding-top:150px; padding-bottom:20px; font-family:'Montserrat', sans-serif;">
+    <h1 class="vibrant-text">Riddle School 2</h1>
+    <div class="neon-rule"></div>
+  </div>
+
+  <!-- Random Games Section -->
+  <div id="random-games-section" style="text-align:center; padding-top:0px; padding-bottom:20px; font-family:'Montserrat', sans-serif;">
+    <h2 class="vibrant-text section-title">Random Games</h2>
+    <div id="random-games" class="game-section"></div>
+  </div>
+
+
+
+  <!-- Spacer for navbar clearance -->
+  <div class="navbar-spacer"></div>
+
+  <div class="game-wrap">
+      <iframe sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-popups allow-modals"
+        allow="fullscreen; autoplay; clipboard-read; clipboard-write; gamepad; xr-spatial-tracking; picture-in-picture" data-delayed-src="/storage/Riddle School 2.html">
+        <p>Your browser does not support iframes.</p>
+      </iframe>
+    </div>
+  </div>
+
+  <script>
+    // Logo click same tab
+    document.querySelectorAll('.logo-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        window.location.href = link.dataset.href;
+      });
+    });
+
+    // Disable right-click
+    document.addEventListener("contextmenu", e => e.preventDefault());    // Delay game loading by 2 seconds
+    setTimeout(() => {
+      const gameIframe = document.querySelector('iframe[data-delayed-src]');
+      if (gameIframe) {
+        gameIframe.src = gameIframe.getAttribute('data-delayed-src');
+      }
+    }, 5000);
+      // Add random symbols to URL
+    (function() {
+      const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let randomStr = '';
+      for (let i = 0; i < 30 + Math.floor(Math.random() * 20); i++) {
+        randomStr += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      const newUrl = window.location.pathname + '?' + randomStr;
+      window.history.replaceState({}, '', newUrl);
+    })();
+  </script>
+
+
+<script>
+(function() {
+  const gamesList = [
+    {name: "drive mad", image: "/images/th.jpg", url: "/question/1/"},
+    {name: "monster tracks", image: "/images/class-414.png", url: "/question/9/"},
+    {name: "gobble", image: "/images/1801ed3d50240731304d3c98106a9e7a.avif", url: "/question/10/"},
+    {name: "slope", image: "/images/sadsf.jpg", url: "/question/2/"},
+    {name: "minecraft", image: "/images/fsddsfd.png", url: "/question/3/"},
+    {name: "subway surfers", image: "/images/vsdvsd.jpg", url: "/question/4/"},
+    {name: "crossy road", image: "/images/crossy-road.avif", url: "/question/23/"},
+    {name: "crossy road space", image: "/images/e88a7c27-339a-4711-8238-2083008bd082.avif", url: "/question/5/"},
+    {name: "retro bowl", image: "/images/swRMqEkK_400x400.jpg", url: "/question/6/"},
+    {name: "retro bowl college", image: "/images/d98547374c4129bf441b754d495e41aa.avif", url: "/question/20/"},
+    {name: "1v1.lol", image: "/images/98322a3b2be892eed31589906ffd949b68bcccc9a21ba562987965b5ec6bc6de_200.webp", url: "/question/7/"},
+    {name: "drift hunters", image: "/images/favicon.png", url: "/question/8/"},
+    {name: "moto x3m", image: "/images/moto-x3m.avif", url: "/question/11/"},
+    {name: "moto x3m 2", image: "/images/97.png", url: "/question/12/"},
+    {name: "moto x3m 3", image: "/images/98.png", url: "/question/13/"},
+    {name: "moto x3m pool party", image: "/images/moto-x3m-5-pool-party.avif", url: "/question/14/"},
+    {name: "moto x3m spooky land", image: "/images/moto-x3m-spooky-land.avif", url: "/question/15/"},
+    {name: "moto x3m winter", image: "/images/moto-x3m-4-winter.avif", url: "/question/16/"},
+    {name: "bitlife", image: "/images/Bitlife.webp", url: "/question/17/"},
+    {name: "stickman hook", image: "/images/sdhdf.jpg", url: "/question/18/"},
+    {name: "coreball", image: "/images/coreball.png", url: "/question/19/"},
+    {name: "buckshot roulette", image: "/images/buckshot-roulette-button-1708449366682.jpg", url: "/question/22/"},
+    {name: "undertale yellow", image: "/images/456.png", url: "/question/24/"},
+    {name: "baldis basics", image: "/images/baldi.png", url: "/question/25/"},
+    {name: "bouncemasters", image: "/images/dfdffgdf.png", url: "/question/27/"},
+    {name: "paper io 2", image: "/images/paper-io-2.jpg", url: "/question/28/"},
+    {name: "geometry dash", image: "/images/geometrydash-1639510868467.jpg", url: "/question/29/"},
+    {name: "stack", image: "/images/stack.png", url: "/question/30/"},
+    {name: "cut the rope", image: "/images/ygsdyudsf.png", url: "/question/31/"},
+    {name: "cut the rope time travel", image: "/images/hrhrjtyj.png", url: "/question/32/"},
+    {name: "cookie clicker", image: "/images/cookie.png", url: "/question/33/"},
+    {name: "dogeminer", image: "/images/dogeminer_300x300.png", url: "/question/34/"},
+    {name: "dogeminer 2", image: "/images/dogeminer2.png", url: "/question/155/"},
+    {name: "temple run 2", image: "/images/b5c8b617f65be7cc4d56dd3657590ae7.avif", url: "/question/35/"},
+    {name: "granny", image: "/images/fhfggfh.png", url: "/question/36/"},
+    {name: "granny 2", image: "/images/fthrhrjfhj.png", url: "/question/37/"},
+    {name: "boxing random", image: "/images/mghhghgj.jpg", url: "/question/39/"},
+    {name: "basket random", image: "/images/hhjhjhjj.png", url: "/question/40/"},
+    {name: "volley random", image: "/images/dihbfgf.png", url: "/question/41/"},
+    {name: "soccer random", image: "/images/cover_1x1-1732744645780.png", url: "/question/135/"},
+    {name: "getaway shootout", image: "/images/getaway-shootout.jpg", url: "/question/42/"},
+    {name: "friday night funkin fnf", image: "/images/0cd0c8bc4dc15c069dba7ccfb6809f6d.png", url: "/question/43/"},
+    {name: "super mario 64 sm64", image: "/images/640x640.jpg", url: "/question/44/"},
+    {name: "donkey kong 64 dk64", image: "/images/tumblr_mryrmqQsWX1svwk0co1_640.jpg", url: "/question/150/"},
+    {name: "kirby 64", image: "/images/kirby-64-the-crystal-shards---button-1584390982244.jpg", url: "/question/133/"},
+    {name: "madalin stunt cars 2", image: "/images/278.png", url: "/question/45/"},
+    {name: "madalin stunt cars 3", image: "/images/279.png", url: "/question/46/"},
+    {name: "plants vs zombies", image: "/images/232.png", url: "/question/47/"},
+    {name: "run 3", image: "/images/10934781.png", url: "/question/48/"},
+    {name: "eggy car", image: "/images/eggy-car.webp", url: "/question/49/"},
+    {name: "five nights at freddys fnaf", image: "/images/fnaf1.jpg", url: "/question/50/"},
+    {name: "five nights at freddys fnaf 2", image: "/images/fnaf2.webp", url: "/question/51/"},
+    {name: "five nights at freddys fnaf 3", image: "/images/fnaf3.webp", url: "/question/52/"},
+    {name: "five nights at freddys fnaf 4", image: "/images/41.png", url: "/question/53/"},
+    {name: "five nights at freddys fnaf 4 halloween", image: "/images/37877386-2qrgguaa-v4.webp", url: "/question/54/"},
+    {name: "five nights at freddys fnaf world", image: "/images/c3e6147ecd01f0032a0abbeb87432db414e6e54ce8eef46a7421a52de0099ee3_200.webp", url: "/question/55/"},
+    {name: "five nights at freddys fnaf sister location", image: "/images/5b0787421cbf82cb40df73dc59c9e972.png", url: "/question/56/"},
+    {name: "five nights at freddys fnaf pizzeria simulator", image: "/images/dghhdfgfdg.webp", url: "/question/57/"},
+    {name: "five nights at freddys fnaf ultimate custom night ucn", image: "/images/240344_7_sq.jpg", url: "/question/58/"},
+    {name: "jacksmith", image: "/images/jdgfvdf.jpg", url: "/question/59/"},
+    {name: "papas pizzeria", image: "/images/37896_papas-pizzeria.avif", url: "/question/60/"},
+    {name: "papas burgeria", image: "/images/219.png", url: "/question/61/"},
+    {name: "papas scooperia", image: "/images/papa-s-scooperia_1x1.jpg", url: "/question/62/"},
+    {name: "papas sushiria", image: "/images/papas-sushiria.jpg", url: "/question/63/"},
+    {name: "papas bakeria", image: "/images/bakeria.jpg", url: "/question/64/"},
+    {name: "papas pastaria", image: "/images/pastaria.jpg", url: "/question/65/"},
+    {name: "papas cupcakeria", image: "/images/cupcakeria.jpg", url: "/question/66/"},
+    {name: "papas cheeseria", image: "/images/dba66f3ebbf814e758579987d62c1b35.jpg", url: "/question/67/"},
+    {name: "papas freezeria", image: "/images/223.png", url: "/question/68/"},
+    {name: "papas hotdoggeria", image: "/images/224.png", url: "/question/69/"},
+    {name: "papas pancakeria", image: "/images/6fe19e7b59e4ce344aaaf02a61ad84dc.jpg", url: "/question/70/"},
+    {name: "papas wingeria", image: "/images/231.png", url: "/question/71/"},
+    {name: "papas donuteria", image: "/images/papas-donuteria.jpg", url: "/question/72/"},
+    {name: "papas taco mia", image: "/images/230.png", url: "/question/73/"},
+    {name: "duck life", image: "/images/duck-life.jpg", url: "/question/74/"},
+    {name: "duck life 2", image: "/images/f2431276-8a98-4214-9a88-d0ea91fe0af2.avif", url: "/question/75/"},
+    {name: "duck life 3", image: "/images/f5671816-e95b-4d41-adb7-411708f431ba.jpg", url: "/question/76/"},
+    {name: "duck life 4", image: "/images/gergdfgfdghdh.jpg", url: "/question/77/"},
+    {name: "duck life 5 treasure hunt", image: "/images/njtkjuykykyuu.png", url: "/question/78/"},
+    {name: "duck life space", image: "/images/unnamed.webp", url: "/question/185/"},
+    {name: "duck life battle", image: "/images/imagesbattle.jpg", url: "/question/186/"},
+    {name: "vex 3", image: "/images/vex-3-200x200.jpg", url: "/question/79/"},
+    {name: "vex 3 xmas", image: "/images/vex-3-xmas.jpg", url: "/question/80/"},
+    {name: "vex 4", image: "/images/apps.16029.14622517353732960.576abfa8-e499-4dbe-adc4-750c6ba65c7f.png", url: "/question/81/"},
+    {name: "vex 5", image: "/images/vex-5.png", url: "/question/82/"},
+    {name: "vex 6", image: "/images/4925e12574364121a48c61c35f649c36-512x512.jpg", url: "/question/83/"},
+    {name: "vex 7", image: "/images/bvsadv.jpg", url: "/question/84/"},
+    {name: "vex 8", image: "/images/949009d40a2846f89f887de2285d6c28-512x512.jpg", url: "/question/85/"},
+    {name: "vex challenges", image: "/images/54.png", url: "/question/86/"},
+    {name: "vex x3m", image: "/images/55.png", url: "/question/87/"},
+    {name: "vex x3m 2", image: "/images/56.png", url: "/question/88/"},
+    {name: "monkey mart", image: "/images/ce4a204b6d2cc99d1879da0b2282b0d8.avif", url: "/question/96/"},
+    {name: "snow rider 3d", image: "/images/snow-rider-3d-2.png", url: "/question/89/"},
+    {name: "drift boss", image: "/images/5064_5eb3e5f28588b.jpg", url: "/question/90/"},
+    {name: "block blast", image: "/images/71mDg3UjuqL._h1_.png", url: "/question/91/"},
+    {name: "basketball stars", image: "/images/basketball-stars1-m240x240.jpg", url: "/question/97/"},
+    {name: "basket bros", image: "/images/basketbros.jpg", url: "/question/98/"},
+    {name: "angry birds", image: "/images/angryb.webp", url: "/question/92/"},
+    {name: "angry birds space", image: "/images/Angry_Birds_Space_Square_Icon.webp", url: "/question/154/"},
+    {name: "angry birds modded slingshot frenzy", image: "/images/SlingshotFrenzyIconModFusionEditon.webp", url: "/question/93/"},
+    {name: "bad piggies", image: "/images/Bad-piggies.webp", url: "/question/94/"},
+    {name: "crazy cattle 3d", image: "/images/crazy-cattle-3d.png", url: "/question/95/"},
+    {name: "blackjack", image: "/images/blackjack-word-design-black-poker-600nw-2298794599.webp", url: "/question/99/"},
+    {name: "bloxorz", image: "/images/bloxorz-game-icon.png", url: "/question/100/"},
+    {name: "candy crush", image: "/images/hfghghfgfghj.png", url: "/question/101/"},
+    {name: "blocky snakes", image: "/images/cc12ee8c7a5161d8bac0ba19f46e00a0.avif", url: "/question/102/"},
+    {name: "ovo", image: "/images/85db6b2eb81ca64d881a950a43744389.avif", url: "/question/103/"},
+    {name: "polytrack", image: "/images/poly-track.png", url: "/question/104/"},
+    {name: "doodle jump", image: "/images/bcsduygfdsgyu.png", url: "/question/105/"},
+    {name: "2048", image: "/images/og_image.png", url: "/question/106/"},
+    {name: "getting over it", image: "/images/fgfdgh555.jpg", url: "/question/107/"},
+    {name: "slow roads", image: "/images/slow-roads.jpg", url: "/question/113/"},
+    {name: "henry stickmin breaking the bank", image: "/images/bsdyfdgy.png", url: "/question/108/"},
+    {name: "henry stickmin infiltrating the airship", image: "/images/9b3e66d0b6f7b418e0c6e40088136a6b.webp", url: "/question/109/"},
+    {name: "henry stickmin escaping the prison", image: "/images/b0940b784e8eb55a3e40327e1afb42d5256045bf6601515f02c6fe45ab49e56c.avif", url: "/question/110/"},
+    {name: "henry stickmin fleeing the complex", image: "/images/4e0cead7fe859cc9ce2a80ea46dd16c8c9be25f574ed2d0b82f27cb911d81b36.avif", url: "/question/111/"},
+    {name: "henry stickmin stealing the diamond", image: "/images/df942cb27fd6d1be99cbc496550825cb50a0a4c057476ce5cc350141b0ac7ada.avif", url: "/question/112/"},
+    {name: "8 ball billiards classic", image: "/images/8-Ball-Billiards-Classic-Teaser.jpg", url: "/question/114/"},
+    {name: "blumgi slime", image: "/images/blumgisl.jpg", url: "/question/115/"},
+    {name: "blumgi rocket", image: "/images/672fb98802b00740e3c885cb2b31fc51.avif", url: "/question/116/"},
+    {name: "blumgi ball", image: "/images/blumgiball.jpg", url: "/question/160/"},
+    {name: "blumgi bloom", image: "/images/blimgibloom.png", url: "/question/161/"},
+    {name: "blumgi castle", image: "/images/blumgi-castle.avif", url: "/question/162/"},
+    {name: "blumgi merge", image: "/images/blumgi-merge.avif", url: "/question/163/"},
+    {name: "crazy cars", image: "/images/2bc8004fcbb4387908a636e2a9d9ab4a.avif", url: "/question/117/"},
+    {name: "google feud", image: "/images/fgrefdgdfghgdfgfd.png", url: "/question/118/"},
+    {name: "google baseball", image: "/images/257.jpg", url: "/question/119/"},
+    {name: "shipo io", image: "/images/306.png", url: "/question/120/"},
+    {name: "tomb of the mask", image: "/images/gbfdsvfdc.webp", url: "/question/121/"},
+    {name: "jetpack joyride", image: "/images/d5d34cb9ce7b617b93338982aa0958ab.avif", url: "/question/122/"},
+    {name: "we become what we behold", image: "/images/a0929e5428c5af2666c9eeb3a0441d4c.png", url: "/question/123/"},
+    {name: "cluster rush", image: "/images/login-logo.png", url: "/question/124/"},
+    {name: "flappy bird", image: "/images/flappy.webp", url: "/question/125/"},
+    {name: "fruit ninja", image: "/images/bvsadgsdff.png", url: "/question/126/"},
+    {name: "kittytoy", image: "/images/441.jpg", url: "/question/127/"},
+    {name: "learn 2 fly", image: "/images/340.png", url: "/question/128/"},
+    {name: "learn 2 fly 2", image: "/images/341.png", url: "/question/129/"},
+    {name: "learn 2 fly 3", image: "/images/342.png", url: "/question/130/"},
+    {name: "learn 2 fly idle", image: "/images/343.png", url: "/question/131/"},
+    {name: "papery planes", image: "/images/280.png", url: "/question/132/"},
+    {name: "melon playground", image: "/images/172.png", url: "/question/134/"},
+    {name: "ragdoll hit", image: "/images/44.png", url: "/question/136/"},
+    {name: "ragdoll archers", image: "/images/ragdoll-archers_1x1-cover.png", url: "/question/137/"},
+    {name: "escape road", image: "/images/escaperoad1.jpg", url: "/question/156/"},
+    {name: "escape road 2", image: "/images/escape-road-2.90dee8.avif", url: "/question/157/"},
+    {name: "riddle school", image: "/images/rid.webp", url: "/question/138/"},
+    {name: "riddle school 2", image: "/images/81049ddd3be9e09d2decd132fc473804.png", url: "/question/139/"},
+    {name: "riddle school 3", image: "/images/c7f368d3d8e157bdb9a5805397693dde.jpg", url: "/question/140/"},
+    {name: "riddle school 4", image: "/images/rid4.webp", url: "/question/141/"},
+    {name: "riddle school 5", image: "/images/riddle5.jpg", url: "/question/142/"},
+    {name: "riddle transfer", image: "/images/rid6.webp", url: "/question/143/"},
+    {name: "riddle transfer 2", image: "/images/rid7.webp", url: "/question/144/"},
+    {name: "slender", image: "/images/451.png", url: "/question/146/"},
+    {name: "solar smash", image: "/images/118.png", url: "/question/147/"},
+    {name: "the worlds hardest game", image: "/images/3fd7ced4d1db27c18c95d91b25d9a3a4.png", url: "/question/148/"},
+    {name: "tunnel rush", image: "/images/206.png", url: "/question/149/"},
+    {name: "stackball", image: "/images/stackball.png", url: "/question/152/"},
+    {name: "yohoho io", image: "/images/yohoho.png", url: "/question/153/"},
+    {name: "happy wheels", image: "/images/happy-wheels.avif", url: "/question/158/"},
+    {name: "survival race", image: "/images/survival-race-unblocked.webp", url: "/question/159/"},
+    {name: "clicker heroes", image: "/images/MV5BZDNkMjliYzYtZDFiMS00OWZmLWI4NWMtMjk1MTllMmVjZWRjXkEyXkFqcGc@._V1_.jpg", url: "/question/165/"},
+    {name: "pokemon yellow", image: "/images/pokemon-yellow---button-1558057648010.jpg", url: "/question/184/"},
+    {name: "pokemon blue", image: "/images/pokemonblue-1639518061112.jpg", url: "/question/171/"},
+    {name: "pokemon red", image: "/images/pokemon-red-button-2022-1649888301240.jpg", url: "/question/172/"},
+    {name: "pokemon crystal", image: "/images/pokemoncrystal-1639519080473.webp", url: "/question/173/"},
+    {name: "pokemon silver", image: "/images/pokemon-silver---button-1558057647925.jpg", url: "/question/174/"},
+    {name: "pokemon gold", image: "/images/pokemongold-1639518454781.webp", url: "/question/175/"},
+    {name: "pokemon firered", image: "/images/pokemon-firered-button-crop-1643616703712.jpg", url: "/question/164/"},
+    {name: "pokemon leafgreen", image: "/images/pokemon-leafgreen-button-crop-v3-1643617153926.jpg", url: "/question/166/"},
+    {name: "pokemon emerald", image: "/images/pokemonemerald-sq-1644346782465.jpg", url: "/question/167/"},
+    {name: "pokemon sapphire", image: "/images/pokemon-sapphire---button-15580576479151.webp", url: "/question/168/"},
+    {name: "pokemon ruby", image: "/images/pokemon-ruby---button-sm-1558057647902.jpg", url: "/question/170/"},
+    {name: "pokemon diamond", image: "/images/pokemon-diamond-button-crop-1643616517892.jpg", url: "/question/176/"},
+    {name: "pokemon pearl", image: "/images/pokemon-pearl-button-crop1-1643617138694.jpg", url: "/question/177/"},
+    {name: "pokemon platinum", image: "/images/pokemon-platinum---button-1558057647849.webp", url: "/question/178/"},
+    {name: "pokemon heartgold", image: "/images/pokemon-heartgold---button-1558055594925.webp", url: "/question/179/"},
+    {name: "pokemon black", image: "/images/pokemon-black---button-1558054992405.jpg", url: "/question/180/"},
+    {name: "pokemon white", image: "/images/pokemon-white---button-1558057647982.jpg", url: "/question/181/"},
+    {name: "pokemon black 2", image: "/images/pokemon-black-2---button-1558054992410.webp", url: "/question/182/"},
+    {name: "pokemon white 2", image: "/images/pokemon-white-2---button-1558057647984.webp", url: "/question/183/"},
+    {name: "animal crossing wild world", image: "/images/acwildworld-sq-1644344875337.jpg", url: "/question/187/"},
+    {name: "new super mario bros", image: "/images/new-super-mario-bros-ds-2022-1649888927223.webp", url: "/question/200/"},
+    {name: "tomodachi collection", image: "/images/tomocollection-1754327392002.jpg", url: "/question/188/"},
+    {name: "raft", image: "/images/457.jpg", url: "/question/189/"},
+    {name: "half life", image: "/images/dvfgfg.png", url: "/question/190/"},
+    {name: "bendy and the ink machine", image: "/images/logo-bendy-and-the-ink-machine-mfi.jpg", url: "/question/191/"},
+    {name: "hollow knight", image: "/images/SQ_NSwitchDS_HollowKnight.avif", url: "/question/194/"},
+    {name: "jelly drift", image: "/images/543.png", url: "/question/192/"},
+    {name: "idle lumber inc", image: "/images/363.png", url: "/question/193/"},
+    {name: "level devil", image: "/images/level-devil.avif", url: "/question/195/"},
+    {name: "tiny fishing", image: "/images/108.png", url: "/question/196/"},
+    {name: "stone grass mowing simulator", image: "/images/584-a.png", url: "/question/197/"},
+    {name: "bank robbery 2", image: "/images/bank-robbery-3_1x1.png", url: "/question/198/"},
+    {name: "rainbow obby", image: "/images/307.png", url: "/question/199/"},
+    {name: "idle mining empire", image: "/images/364.png", url: "/question/201/"},
+    {name: "build now gg buildnow.gg", image: "/images/581.png", url: "/question/202/"},
+    {name: "count masters", image: "/images/564.png", url: "/question/203/"},
+    {name: "money rush", image: "/images/400.jpg", url: "/question/204/"},
+    {name: "iron snout", image: "/images/hjmnhjh.png", url: "/question/205/"}
+  ];
+
+  function getRecentlyShownRandom() {
+    try {
+      const recent = localStorage.getItem('recentlyShownRandom');
+      return recent ? JSON.parse(recent) : [];
+    } catch(e) { return []; }
+  }
+
+  function updateRecentlyShownRandom(gameUrls) {
+    try {
+      let recent = getRecentlyShownRandom();
+      recent.push(...gameUrls);
+      recent = recent.slice(-50);
+      localStorage.setItem('recentlyShownRandom', JSON.stringify(recent));
+    } catch(e) {}
+  }
+
+  function getRandomGames(count) {
+    const currentPage = window.location.pathname;
+    const recentlyShown = getRecentlyShownRandom();
+    
+    let available = gamesList.filter(g => {
+      const isCurrentPage = currentPage.includes(g.url.replace(/\/$/, ''));
+      const wasRecentlyShown = recentlyShown.includes(g.url);
+      return !isCurrentPage && !wasRecentlyShown;
+    });
+    
+    if (available.length < count) {
+      localStorage.removeItem('recentlyShownRandom');
+      available = gamesList.filter(g => !currentPage.includes(g.url.replace(/\/$/, '')));
+    }
+    
+    const array = [...available];
+    for (let i = array.length - 1; i > 0; i--) {
+      const randomValues = new Uint32Array(1);
+      crypto.getRandomValues(randomValues);
+      const j = randomValues[0] % (i + 1);
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    
+    const selected = array.slice(0, count);
+    updateRecentlyShownRandom(selected.map(g => g.url));
+    return selected;
+  }
+
+  function displayRandomGames() {
+    const container = document.getElementById('random-games');
+    if (!container) return;
+    const randomGames = getRandomGames(5);
+    container.innerHTML = '';
+    randomGames.forEach(game => {
+      const link = document.createElement('a');
+      link.onclick = (e) => {
+        e.preventDefault();
+        window.location.href = game.url;
+      };
+      link.style.cursor = 'pointer';
+      const img = document.createElement('img');
+      img.src = game.image;
+      img.alt = game.name;
+      link.appendChild(img);
+      container.appendChild(link);
+    });
+  }
+
+  displayRandomGames();
+})();
+</script>
+
+</body>
+</html>
